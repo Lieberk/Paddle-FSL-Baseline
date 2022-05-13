@@ -47,6 +47,8 @@ if __name__ == '__main__':
     checkpoint_dir = '%s/checkpoint/%s/%s_%s' % (configs.save_dir, params.dataset, params.model, params.method)
     if params.train_aug:
         checkpoint_dir += '_aug'
+    if params.method in ['baseline', 'baseline++']:
+        checkpoint_dir += '_%dway_%dshot' % (params.train_n_way, params.n_shot)
 
     split_str = params.split
     novel_file = os.path.join(checkpoint_dir.replace("checkpoint", "features"),
